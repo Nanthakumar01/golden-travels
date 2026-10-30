@@ -1,0 +1,21 @@
+# ==============================================================================
+# Golden Travels Backend API - Production Apache Configuration
+# ==============================================================================
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # 1. CRITICAL: Prevent Apache from stripping the JWT Authorization header on cPanel
+  RewriteCond %{HTTP:Authorization} .
+  RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+  # 2. If using Apache Reverse Proxy to Node.js backend port (e.g. 5000):
+  # RewriteRule ^(.*)$ http://127.0.0.1:5000/$1 [P,L]
+</IfModule>
+
+# ==============================================================================
+# CORS & Security:
+# Express server.js already handles dynamic CORS and OPTIONS preflight
+# with credentials support. Do NOT add 'Header always set Access-Control-Allow-Origin "*"'
+# here, because duplicate headers or wildcard with credentials causes browser CORS errors.
+# ==============================================================================

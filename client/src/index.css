@@ -1,0 +1,344 @@
+:root {
+  --font-Jakarta: 'Plus Jakarta Sans', sans-serif;
+  --font-dm: 'DM Sans', sans-serif;
+  --font-Yesteryear: 'Yesteryear', cursive;
+}
+html {
+  scroll-behavior: smooth !important;
+}
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Form inputs clean placeholder styling - ensures placeholders look soft and muted */
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #94a3b8 !important;
+  font-weight: 400 !important;
+  opacity: 1 !important;
+}
+
+/* Luxury Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+  border: 2px solid #f8fafc;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #16a34a;
+}
+.search-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: start center;
+  padding: 90px 16px 24px;
+}
+
+.search-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 30, 42, 0.58);
+}
+
+.search-modal .modal-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 800px);
+  margin: 0;
+  animation: search-modal-enter 180ms ease-out;
+}
+
+.search-modal .modal-content {
+  position: relative;
+  padding: 28px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 24px 60px rgba(8, 30, 42, 0.22);
+}
+
+.search-modal .btn-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  background: transparent;
+  color: #081e2a;
+  font-size: 0;
+}
+
+.search-modal .btn-close::before {
+  content: '×';
+  font-family: Arial, sans-serif;
+  font-size: 28px;
+  line-height: 1;
+}
+
+.search-modal .search-form-mobie .search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-modal .search-input {
+  min-width: 0;
+  flex: 1;
+  padding: 14px 16px;
+  border: 1px solid #d8e1d9;
+  border-radius: 10px;
+  color: #081e2a;
+}
+
+.search-modal .search-input:focus {
+  outline: 3px solid rgba(22, 163, 74, 0.22);
+  border-color: #16a34a;
+}
+
+@keyframes search-modal-enter {
+  from { opacity: 0; transform: translateY(-12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 575px) {
+  .search-modal { padding-top: 48px; }
+  .search-modal .modal-content { padding: 48px 18px 18px; }
+  .search-modal .search-form-mobie .search { flex-wrap: wrap; }
+  .search-modal .search-input { flex-basis: 100%; }
+}
+
+/* ========================================================
+   GLOBAL MOBILE & TABLET RESPONSIVE FIXES
+   ======================================================== */
+
+html, body {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+#wrapper, #pagee, #page, .wrapper, .main-content {
+  overflow-x: hidden !important;
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+img, video, iframe {
+  max-width: 100%;
+}
+
+@media (max-width: 991px) {
+  .tf-container {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  /* Compact section paddings on tablets */
+  .pd-main {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .tf-container {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .title-heading {
+    font-size: clamp(24px, 6vw, 30px) !important;
+    line-height: 1.25 !important;
+  }
+
+  .sub-title-heading {
+    font-size: 20px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .mobile-nav-toggler,
+  button.mobile-nav-toggler {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    height: 40px !important;
+    border-radius: 10px !important;
+    background: #f8fafc !important;
+    border: 1.5px solid #cbd5e1 !important;
+    cursor: pointer !important;
+    color: #0f172a !important;
+    flex-shrink: 0 !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Hide floating WhatsApp button and scroll-to-top button when mobile menu is open */
+body.mobile-menu-visible .gt-whatsapp-float,
+body.mobile-menu-visible .whatsapp-float-btn,
+body.mobile-menu-visible #scroll-top,
+body.mobile-menu-visible .button-go {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ========================================================
+   MOBILE & TABLET TEXT ALIGNMENT & SCROLLBAR OVERRIDES
+   ======================================================== */
+
+/* Suppress ugly global white scrollbar on dark mobile drawer */
+.gt-mobile-drawer,
+.gt-mobile-drawer *,
+.gt-menu-country-grid,
+.gt-menu-nav-area {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.gt-mobile-drawer::-webkit-scrollbar,
+.gt-mobile-drawer *::-webkit-scrollbar,
+.gt-menu-country-grid::-webkit-scrollbar,
+.gt-menu-nav-area::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+}
+
+.gt-mobile-drawer::-webkit-scrollbar-track,
+.gt-mobile-drawer *::-webkit-scrollbar-track,
+.gt-menu-country-grid::-webkit-scrollbar-track,
+.gt-menu-nav-area::-webkit-scrollbar-track {
+  background: transparent !important;
+  border: none !important;
+}
+
+.gt-mobile-drawer::-webkit-scrollbar-thumb,
+.gt-mobile-drawer *::-webkit-scrollbar-thumb,
+.gt-menu-country-grid::-webkit-scrollbar-thumb,
+.gt-menu-nav-area::-webkit-scrollbar-thumb {
+  background: transparent !important;
+}
+
+/* Responsive Text Alignments across Mobile & Tablet */
+@media (max-width: 991px) {
+  /* Centered headers stay neatly centered on tablets and mobile */
+  .center .title-heading,
+  .center .sub-title-heading,
+  .text-center .title-heading,
+  .text-center .sub-title-heading,
+  .heading-title.center {
+    text-align: center !important;
+  }
+
+  /* Left aligned titles and labels */
+  .tour-content-card h2,
+  .tour-content-card h3,
+  .tour-itinerary-body h3,
+  .package-card-title,
+  .gt-menu-link,
+  .gt-menu-dest-header,
+  .gt-menu-country-btn {
+    text-align: left !important;
+  }
+
+  /* Long descriptive and narrative text: Justified with clean borders on mobile & tab */
+  .tour-about-text,
+  .tour-itinerary-desc,
+  .article-content p,
+  .blog-single-content p,
+  .blog-detail p,
+  .faq-answer,
+  .terms-item-text {
+    text-align: justify !important;
+    text-justify: inter-word !important;
+    hyphens: auto;
+  }
+
+  /* Centered descriptions inside center aligned section wrappers */
+  .text-center .des,
+  .center .des,
+  .text-center .sub-title {
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Centered destination card titles */
+  .destination-title.center {
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 767px) {
+  /* Phone screen specific text alignment */
+  .top-destination .title-heading {
+    text-align: left !important;
+  }
+
+  .top-destination .sub-title-heading {
+    text-align: left !important;
+  }
+
+  /* In mobile cards, ensure clean text wrapping */
+  .destination-card-link + h6 {
+    text-align: center !important;
+  }
+}
+
+/* Maintain symmetrical left & right gaps across all laptop screen sizes (1280px, 1366px, 1440px, 1920px) */
+.tf-container {
+  max-width: 1540px !important;
+  width: 100% !important;
+  padding-left: clamp(16px, 3.2vw, 40px) !important;
+  padding-right: clamp(16px, 3.2vw, 40px) !important;
+}
+
+@media (max-width: 1440px) {
+  .tf-container {
+    max-width: 100% !important;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+}
+
+@media (max-width: 1280px) {
+  .tf-container {
+    max-width: 100% !important;
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+}

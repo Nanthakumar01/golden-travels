@@ -1,0 +1,543 @@
+/* ====================================================================
+   Golden Travels - Luxury & Smooth Animations System
+   ==================================================================== */
+
+/* --- Prevent Horizontal Scrollbar on all devices --- */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  width: 100%;
+}
+
+#wrapper {
+  overflow-x: clip !important;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* --- Scroll Animations (Safe Default: Opacity 1 with smooth reveal) --- */
+.scroll-reveal {
+  opacity: 1;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+@keyframes fadeInUpSafe {
+  from {
+    opacity: 0.2;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeInUpSafe 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Sticky Lower Header Navbar */
+.main-header {
+  position: relative !important;
+  z-index: 990;
+}
+
+.header-lower {
+  background-color: #ffffff !important;
+  transition: all 0.3s ease;
+}
+
+.header-lower.is-sticky {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 99999 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12) !important;
+  animation: slideDownStickyNav 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDownStickyNav {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Staggered Child Delays */
+.stagger-delay-1 { transition-delay: 0.08s !important; }
+.stagger-delay-2 { transition-delay: 0.16s !important; }
+.stagger-delay-3 { transition-delay: 0.24s !important; }
+.stagger-delay-4 { transition-delay: 0.32s !important; }
+.stagger-delay-5 { transition-delay: 0.40s !important; }
+.stagger-delay-6 { transition-delay: 0.48s !important; }
+
+/* --- Hero Carousel / Slider Navigation Arrows --- */
+.hero-slider-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.hero-slider-wrap .swiper-button-prev,
+.hero-slider-wrap .swiper-button-next {
+  width: 48px;
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border-radius: 50%;
+  color: #081e2a;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  z-index: 20;
+}
+
+.hero-slider-wrap .swiper-button-prev:after,
+.hero-slider-wrap .swiper-button-next:after {
+  font-size: 18px;
+  font-weight: 800;
+  color: #16a34a;
+}
+
+.hero-carousel-btn:hover {
+  background-color: #16a34a !important;
+  color: #ffffff !important;
+  transform: translateY(-50%) scale(1.12) !important;
+  box-shadow: 0 8px 24px rgba(22, 163, 74, 0.45) !important;
+}
+
+.hero-carousel-btn:hover span {
+  color: #ffffff !important;
+}
+
+.hero-slider-wrap .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #cbd5e1;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.hero-slider-wrap .swiper-pagination-bullet-active {
+  background: #16a34a !important;
+  width: 28px !important;
+  border-radius: 6px !important;
+  opacity: 1;
+}
+
+/* --- Footer Animations --- */
+.footer-link-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0px;
+  color: #9ca3af;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-link-item .link-arrow {
+  display: inline-block;
+  opacity: 0;
+  width: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.footer-link-item:hover {
+  color: #22c55e !important;
+  transform: translateX(6px);
+}
+
+.footer-link-item:hover .link-arrow {
+  opacity: 1;
+  width: 14px;
+  transform: translateX(0);
+  margin-right: 4px;
+}
+
+/* Footer Social Icons */
+.footer-social-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #ffffff !important;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+.footer-social-btn:hover {
+  transform: translateY(-5px) scale(1.15);
+}
+
+.footer-social-btn.fb:hover {
+  background-color: #1877f2 !important;
+  box-shadow: 0 8px 18px rgba(24, 119, 242, 0.45);
+  border-color: #1877f2;
+}
+
+.footer-social-btn.tw:hover {
+  background-color: #000000 !important;
+  box-shadow: 0 8px 18px rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-social-btn.insta:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+  box-shadow: 0 8px 18px rgba(225, 48, 108, 0.45);
+  border-color: transparent;
+}
+
+.footer-social-btn.yt:hover {
+  background-color: #ff0000 !important;
+  box-shadow: 0 8px 18px rgba(255, 0, 0, 0.45);
+  border-color: #ff0000;
+}
+
+/* Footer Contact Card Items */
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  color: #9ca3af;
+  font-size: 13px;
+  transition: all 0.3s ease;
+}
+
+.footer-contact-item:hover {
+  background-color: rgba(34, 197, 94, 0.08);
+  color: #f3f4f6;
+  transform: translateX(5px);
+}
+
+.footer-contact-item i {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.footer-contact-item:hover i {
+  transform: scale(1.2);
+  color: #22c55e !important;
+}
+
+/* Footer Bottom Links */
+.footer-bottom-link {
+  position: relative;
+  color: #9ca3af;
+  font-size: 13px;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.footer-bottom-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: #22c55e;
+  transition: width 0.3s ease;
+}
+
+.footer-bottom-link:hover {
+  color: #ffffff;
+}
+
+.footer-bottom-link:hover::after {
+  width: 100%;
+}
+
+/* --- Card Lift & Hover Effects --- */
+.card-hover-effect {
+  opacity: 1 !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+  will-change: transform, box-shadow;
+}
+
+.card-hover-effect:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 32px -8px rgba(0, 0, 0, 0.14) !important;
+}
+
+/* Image Zoom on Card Hover */
+.card-image-wrap {
+  overflow: hidden;
+  position: relative;
+}
+
+.card-image-wrap img {
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.card-hover-effect:hover .card-image-wrap img,
+.card-image-wrap:hover img {
+  transform: scale(1.08) !important;
+}
+
+/* --- Shimmer / Button Shine Animation --- */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-shine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.25) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: skewX(-25deg);
+  transition: none;
+}
+
+.btn-shine:hover::before {
+  left: 140%;
+  transition: left 0.75s ease-in-out;
+}
+
+.btn-shine:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(22, 163, 74, 0.35);
+}
+
+.btn-shine:active {
+  transform: scale(0.97);
+}
+
+/* --- Pulse Badges --- */
+@keyframes soft-pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.5);
+  }
+  70% {
+    transform: scale(1.03);
+    box-shadow: 0 0 0 8px rgba(22, 163, 74, 0);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(22, 163, 74, 0);
+  }
+}
+
+.pulse-badge {
+  animation: soft-pulse 2.4s infinite ease-in-out;
+}
+
+/* --- Persona Circle Hover & Float --- */
+.persona-avatar-item {
+  opacity: 1 !important;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease;
+}
+
+.persona-avatar-item:hover {
+  transform: translateY(-8px) scale(1.06);
+}
+
+/* Smooth Floating Keyframe */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.floating-elem {
+  animation: gentle-float 4s ease-in-out infinite;
+}
+
+/* ====================================================================
+   3D Cinematic Hero Slider System
+   ==================================================================== */
+@keyframes kenBurns3D {
+  0% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.10) translate3d(-12px, -6px, 0);
+  }
+  100% {
+    transform: scale(1.02) translate3d(0, 0, 0);
+  }
+}
+
+.slide-ken-burns {
+  animation: kenBurns3D 14s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+@keyframes hero3DFloat {
+  0%, 100% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotateX(2deg) rotateY(-2deg);
+  }
+}
+
+.hero-3d-card {
+  animation: hero3DFloat 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.hero-title-shadow {
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.65), 0 2px 6px rgba(0, 0, 0, 0.85);
+}
+
+.hero-sub-shadow {
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.75);
+}
+
+.hero-glass-pill {
+  background: rgba(8, 26, 18, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.hero-glass-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Button-in-Button kinetic micro-interaction */
+.btn-nested-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  margin-left: 10px;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s;
+}
+
+.btn-main:hover .btn-nested-arrow {
+  transform: translateX(4px) scale(1.08);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ====================================================================
+   Unique Luxury Animations & Micro-Interactions
+   ==================================================================== */
+
+/* Smooth Card Hover with Ambient Emerald & Gold Halo */
+.tour-card, .xp-card, .destination-item, .blog-item {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s ease !important;
+  will-change: transform, box-shadow;
+}
+
+.tour-card:hover, .xp-card:hover {
+  transform: translateY(-8px) scale(1.008) !important;
+  box-shadow: 0 24px 48px -12px rgba(22, 163, 74, 0.22),
+              0 8px 24px -4px rgba(253, 224, 71, 0.12),
+              0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+/* Floating Breathe on Cards Badge */
+@keyframes luxuryFloatBadge {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.tour-tag-right, .xp-badge, .badge-floating {
+  animation: luxuryFloatBadge 3.6s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Metallic Light-Beam Shimmer on Call/Inquire Buttons */
+.tour-btn-view, .xp-view, .btn-main {
+  position: relative;
+  overflow: hidden;
+}
+
+.tour-btn-view::after, .xp-view::after, .btn-main::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -70%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(25deg);
+  pointer-events: none;
+  transition: none;
+}
+
+.tour-btn-view:hover::after, .xp-view:hover::after, .btn-main:hover::after {
+  left: 130%;
+  transition: left 0.75s ease-in-out;
+}
+
+/* Scroll-triggered Smooth Reveal Animations */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Smooth Interactive Image Zoom */
+.tour-card img, .xp-card img, .destination-item img {
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.tour-card:hover img, .xp-card:hover img {
+  transform: scale(1.07);
+}
