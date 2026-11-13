@@ -28,6 +28,7 @@ export default function ImageUploader({
 	// Clean out any hardcoded localhost URL
 	const cleanPath = (p) => {
 		if (!p) return ''
+		if (p.startsWith('data:')) return p
 		return p.replace(/^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?/, '')
 	}
 
@@ -181,7 +182,7 @@ export default function ImageUploader({
 
 						<div style={{ flex: 1, minWidth: 0 }}>
 							<div style={{ fontSize: '12.5px', fontWeight: '700', color: '#0f172a', marginBottom: '6px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-								{cleanPath(value).split('/').pop()}
+								{value.startsWith('data:') ? '✓ Optimized Image (Permanent DB)' : cleanPath(value).split('/').pop()}
 							</div>
 							<div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
 								<button

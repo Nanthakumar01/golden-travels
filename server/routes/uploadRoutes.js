@@ -60,23 +60,31 @@ router.post('/', protect, upload.single('image'), async (req, res) => {
 		const isImage = req.file.mimetype.startsWith('image/')
 		const isSvgOrGif = req.file.mimetype === 'image/svg+xml' || req.file.mimetype === 'image/gif'
 
-		// If it's a standard image (jpg, png, webp, etc.), compress & convert to webp
+		let base64Url = null
+
+		// If it's a standard image (jpg, png, webp, etc.), compress & convert to webp + base64
 		if (isImage && !isSvgOrGif) {
 			const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9)
 			finalFilename = 'tour-' + uniqueSuffix + '.webp'
 			const finalFilePath = path.join(uploadDir, finalFilename)
 
 			try {
-				await sharp(originalFilePath)
+				const webpBuffer = await sharp(originalFilePath)
 					.rotate() // Automatically orient based on EXIF
 					.resize({
-						width: 1920,
-						height: 1920,
+						width: 1200,
+						height: 1200,
 						fit: 'inside',
 						withoutEnlargement: true
 					})
-					.webp({ quality: 82, effort: 4 })
-					.toFile(finalFilePath)
+					.webp({ quality: 80, effort: 4 })
+					.toBuffer()
+
+				// Write buffer to local disk for local fallback
+				fs.writeFileSync(finalFilePath, webpBuffer)
+
+				// Convert to clean Data URI for database permanence (no more 404 on Render sleep/restarts!)
+				base64Url = `data:image/webp;base64,${webpBuffer.toString('base64')}`
 
 				// Remove the original uncompressed file
 				try {
@@ -111,11 +119,14 @@ router.post('/', protect, upload.single('image'), async (req, res) => {
 		const protocol = req.headers['x-forwarded-proto'] || req.protocol || 'http'
 		const fileUrl = `${protocol}://${host}/uploads/${finalFilename}`
 
+		// Use base64Url when available so it permanently saves in TiDB without ephemeral 404s
+		const persistentUrl = base64Url || fileUrl
+
 		res.json({
 			success: true,
 			message: 'Image uploaded and optimized successfully',
-			url: fileUrl,
-			relativeUrl: `/uploads/${finalFilename}`,
+			url: persistentUrl,
+			relativeUrl: persistentUrl,
 			filename: finalFilename
 		})
 	} catch (error) {

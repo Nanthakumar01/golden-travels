@@ -358,12 +358,14 @@ export default function ExclusivePackages({ activePersona, onOpenInquiry, sectio
 									<article className="xp-card">
 										<Link href={tourLink} className="xp-photo" style={{ textDecoration: 'none', display: 'block' }}>
 											<img
-												src={pkg.image}
+												src={pkg.image || '/assets/images/packages/vietnam.jpg'}
 												alt={pkg.title}
 												loading="lazy"
 												decoding="async"
 												onError={(e) => {
-													e.currentTarget.style.display = 'none'
+													if (e.currentTarget.src !== '/assets/images/packages/vietnam.jpg') {
+														e.currentTarget.src = '/assets/images/packages/vietnam.jpg'
+													}
 												}}
 											/>
 											<span className="xp-badge">{pkg.badge}</span>

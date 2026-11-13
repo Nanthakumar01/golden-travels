@@ -57,7 +57,7 @@ const Package = sequelize.define('Package', {
 		allowNull: true
 	},
 	image: {
-		type: DataTypes.STRING(255),
+		type: DataTypes.TEXT('medium'),
 		allowNull: true
 	},
 	gallery: {
