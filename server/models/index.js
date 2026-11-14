@@ -85,6 +85,10 @@ export const syncDb = async (force = false) => {
 		// Ensure showInExplore exists on packages table
 		await sequelize.query('ALTER TABLE `packages` ADD COLUMN `showInExplore` TINYINT(1) DEFAULT 1').catch(() => {})
 
+		// Ensure image column supports large Base64 WebP in packages table
+		await sequelize.query('ALTER TABLE `packages` MODIFY COLUMN `image` MEDIUMTEXT NULL').catch(() => {})
+		await sequelize.query('ALTER TABLE `packages` MODIFY COLUMN `gallery` LONGTEXT NULL').catch(() => {})
+
 		// Auto-populate canonicalUrl for all existing packages & blogs
 		await sequelize.query("UPDATE `packages` SET `canonicalUrl` = CONCAT('https://goldentravels.in/tour/', `slug`) WHERE (`canonicalUrl` IS NULL OR `canonicalUrl` = '') AND `slug` IS NOT NULL").catch(() => {})
 		await sequelize.query("UPDATE `blogs` SET `canonicalUrl` = CONCAT('https://goldentravels.in/blog/', `slug`) WHERE (`canonicalUrl` IS NULL OR `canonicalUrl` = '') AND `slug` IS NOT NULL").catch(() => {})
